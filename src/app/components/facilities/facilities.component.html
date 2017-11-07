@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Facilities</h1>
+        </div>
+    </div>
+    <div class="row dark th">
+        <ay-treeTable [value]="data_facilities">
+            <ay-column field="name" header="Name"></ay-column>
+            <ay-column field="description" header="description"></ay-column>
+            <ay-column field="count" header="count"></ay-column>
+        </ay-treeTable>
+    </div>
+</div>
