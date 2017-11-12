@@ -16,13 +16,39 @@ export class FacilitiesComponent {
         private activatedRoute: ActivatedRoute,
         private apiService: ApiService) {
         let that = this;
-        that.data_facilities = [];
-       /*
+        that.data_facilities =  {
+            "data":
+            [  
+                {  
+                    "data":{  
+                        "name":"Andrew",
+                        "gender":"Male"
+                    },
+                    "children":[
+                        {  
+                            "data":{  
+                                "name":"Andrewson",
+                                "gender":"Male"
+                            },
+                            "children":[  
+                                {  
+                                    "data":{  
+                                        "name":"Eric",
+                                        "gender":"Male"
+                                    }
+                                }                       
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+        /*
         this.apiService.getFacilityData()
         .map((res: any) => {
-            console.log("any:", res);
+            
             that.data_facilities = res;    
-            console.log(that.data_facilities);
-        }).subscribe();*/
+            
+        }).subscribe(); */
     }
 }

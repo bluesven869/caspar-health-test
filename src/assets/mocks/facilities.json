@@ -1,0 +1,58 @@
+{
+    "data":
+    [  
+        {  
+            "data": {  
+                "name": "Facility-1",
+                "description": "This is test facility-1",
+                "count": 2
+            },
+            "children":[
+                {  
+                    "data":{  
+                        "name": "sub-facility-1-1",
+                        "description": "This is test sub-facility-1-1",
+                        "count": 0
+                    }
+                },
+                {  
+                    "data":{  
+                        "name": "sub-facility-1-2",
+                        "description": "This is test sub-facility-1-2",
+                        "count": 0
+                    }
+                }
+            ]
+        }, 
+        {  
+            "data": {  
+                "name": "Facility-2",
+                "description": "This is test facility-2",
+                "count": 3
+            },
+            "children":[
+                {  
+                    "data":{  
+                        "name": "sub-facility-2-1",
+                        "description": "This is test sub-facility-2-1",
+                        "count": 0
+                    }
+                },
+                {  
+                    "data":{  
+                        "name": "sub-facility-2-2",
+                        "description": "This is test sub-facility-2-2",
+                        "count": 0
+                    }
+                },
+                {  
+                    "data":{  
+                        "name": "sub-facility-2-3",
+                        "description": "This is test sub-facility-2-3",
+                        "count": 0
+                    }
+                }
+            ]
+        }
+    ]
+}

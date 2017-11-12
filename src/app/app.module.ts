@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -37,8 +37,9 @@ import { routing } from './app.routing';
     ModalModule.forRoot(),
     routing,
     TreeTableModule,    
+    HttpClientModule,
   ],
-  providers: [ApiService, Http],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
