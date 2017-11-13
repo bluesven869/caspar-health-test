@@ -1,3 +1,73 @@
 <app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Therapists</h1>
+        </div>
+    </div>
+    
+    <div class="therapists" *ngIf="therapistList">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Facility</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (dblclick)="updateTherapist(therapist)" *ngFor="let therapist of therapistList">
+                    <ng-container *ngIf="!editTherapists.includes(therapist); else editTD">
+                      <td>{{therapist.name}}</td>
+                      <td>{{therapist.description}}</td>
+                      <td>{{therapist.facility.name}}</td>
+                    </ng-container>
 
-<div>Therapists</div>
+                    <ng-template #editTD>
+                      <td><input type="text" name="name" id="name" (keypress)="submitTherapist($event, therapist)" [(ngModel)]="therapist.name" placeholder="Name" class="form-control" /></td>
+                      <td><input type="text" name="description" id="description" (keypress)="submitTherapist($event, therapist)" [(ngModel)]="therapist.description" placeholder="Description" class="form-control"></td>
+                      <td>
+                        <select name="facility" id="facility" [(ngModel)]="therapist.facility">
+                          <option *ngFor="let facility of facilityList" [ngValue]="facility">{{facility.name}}</option>
+                        </select>
+                      </td>
+                    </ng-template>
+    
+                    <td class="o">
+                        <button class="btn btn-success" (click)="doneTherapist(therapist)">
+                            <i  class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="updateTherapist(therapist)">
+                            <i  class="fa fa-pencil"></i>
+                            </button>
+                        <button class="btn btn-danger" (click)="deleteTherapist(therapist)">
+                            <i  class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <form>
+        <div class="form-row">
+  
+            <div class="col-md-3">
+                <input type="text" name="title" id="title" [(ngModel)]="newTherapist.name" placeholder="Name" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input name="description" id="description" [(ngModel)]="newTherapist.description" placeholder="Description" class="form-control"
+                id="description">
+            </div>
+            <div class="col-md-3">
+                <select name="facility" id="facility" [(ngModel)]="newTherapist.facility">
+                  <option *ngFor="let facility of facilityList" [ngValue]="facility">{{facility.name}}</option>
+                </select>
+              </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,2 +1,73 @@
 <app-header></app-header>
-<div>Patient</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Patients</h1>
+        </div>
+    </div>
+    
+    <div class="patient" *ngIf="patientList">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Therapist</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (dblclick)="updatePatient(patient)" *ngFor="let patient of patientList">
+                    <ng-container *ngIf="!editPatients.includes(patient); else editTD">
+                      <td>{{patient.name}}</td>
+                      <td>{{patient.description}}</td>
+                      <td>{{patient.therapist.name}}</td>
+                    </ng-container>
+
+                    <ng-template #editTD>
+                      <td><input type="text" name="name" id="name" (keypress)="submitPatient($event, patient)" [(ngModel)]="patient.name" placeholder="Name" class="form-control" /></td>
+                      <td><input type="text" name="description" id="description" (keypress)="submitPatient($event, patient)" [(ngModel)]="patient.description" placeholder="Description" class="form-control"></td>
+                      <td>
+                        <select name="therapist" id="therapist" [(ngModel)]="patient.therapist">
+                          <option *ngFor="let therapist of therapistList" [ngValue]="therapist">{{therapist.name}}</option>
+                        </select>
+                      </td>
+                    </ng-template>
+    
+                    <td class="o">
+                        <button class="btn btn-success" (click)="donePatient(patient)">
+                            <i  class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="updatePatient(patient)">
+                            <i  class="fa fa-pencil"></i>
+                            </button>
+                        <button class="btn btn-danger" (click)="deletePatient(patient)">
+                            <i  class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <form>
+        <div class="form-row">
+  
+            <div class="col-md-3">
+                <input type="text" name="title" id="title" [(ngModel)]="newPatient.name" placeholder="Name" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input name="description" id="description" [(ngModel)]="newPatient.description" placeholder="Description" class="form-control"
+                id="description">
+            </div>
+            <div class="col-md-3">
+                <select name="therapist" id="therapist" [(ngModel)]="newPatient.therapist">
+                  <option *ngFor="let therapist of therapistList" [ngValue]="therapist">{{therapist.name}}</option>
+                </select>
+              </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+            </div>
+        </div>
+    </form>
+</div>

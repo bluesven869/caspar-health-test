@@ -5,3 +5,8 @@
 .navbar-default .navbar-brand{
     color: white;
 }
+
+a { 
+    cursor: pointer;
+    color: #0a0909 !important;
+}

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -38,6 +40,8 @@ import { routing } from './app.routing';
     routing,
     TreeTableModule,    
     HttpClientModule,
+    FormsModule,
+    AsyncLocalStorageModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

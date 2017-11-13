@@ -5,11 +5,57 @@
             <h1>Facilities</h1>
         </div>
     </div>
-    <div class="row dark th">
-        <ay-treeTable [value]="data_facilities">
-            <ay-column field="name" header="Name"></ay-column>
-            <ay-column field="description" header="description"></ay-column>
-            <ay-column field="count" header="count"></ay-column>
-        </ay-treeTable>
+    
+    <div class="facilities" *ngIf="facilityList">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (dblclick)="updateFacility(facility)" *ngFor="let facility of facilityList">
+                    <ng-container *ngIf="!editFacilities.includes(facility); else editTD">
+                        <td>{{facility.name}}</td>
+                        <td>{{facility.description}}</td>
+                    </ng-container>
+
+                    <ng-template #editTD>
+                        <td><input type="text" name="name" id="name" (keypress)="submitFacility($event, facility)" [(ngModel)]="facility.name" placeholder="Name" class="form-control" /></td>
+                        <td><input type="text" name="description" id="description" (keypress)="submitFacility($event, facility)" [(ngModel)]="facility.description" placeholder="Description" class="form-control"></td>
+                    </ng-template>
+    
+                    <td class="o">
+                        <button class="btn btn-success" (click)="doneFacility(facility)">
+                            <i  class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-primary" (click)="updateFacility(facility)">
+                            <i  class="fa fa-pencil"></i>
+                            </button>
+                        <button class="btn btn-danger" (click)="deleteFacility(facility)">
+                            <i  class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+    <form>
+        <div class="form-row">
+  
+            <div class="col-md-4">
+                <input type="text" name="title" id="title" [(ngModel)]="newFacility.name" placeholder="Name" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <input name="description" id="description" [(ngModel)]="newFacility.description" placeholder="Description" class="form-control"
+                id="description">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+            </div>
+        </div>
+    </form>
 </div>
